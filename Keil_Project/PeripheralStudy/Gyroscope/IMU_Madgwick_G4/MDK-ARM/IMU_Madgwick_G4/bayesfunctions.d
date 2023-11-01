@@ -1,0 +1,17 @@
+imu_madgwick_g4\bayesfunctions.o: D:\STM32\ARM\PACK\ARM\CMSIS-DSP\1.14.4\Source\BayesFunctions\BayesFunctions.c
+imu_madgwick_g4\bayesfunctions.o: D:\STM32\ARM\PACK\ARM\CMSIS-DSP\1.14.4\Source\BayesFunctions\arm_gaussian_naive_bayes_predict_f32.c
+imu_madgwick_g4\bayesfunctions.o: D:\STM32\ARM\PACK\ARM\CMSIS-DSP\1.14.4\Include\dsp/bayes_functions.h
+imu_madgwick_g4\bayesfunctions.o: D:\STM32\ARM\PACK\ARM\CMSIS-DSP\1.14.4\Include\arm_math_types.h
+imu_madgwick_g4\bayesfunctions.o: ../Drivers/CMSIS/Include/cmsis_compiler.h
+imu_madgwick_g4\bayesfunctions.o: D:\STM32\ARM\ARMCC\Bin\..\include\stdint.h
+imu_madgwick_g4\bayesfunctions.o: ../Drivers/CMSIS/Include/cmsis_armcc.h
+imu_madgwick_g4\bayesfunctions.o: D:\STM32\ARM\ARMCC\Bin\..\include\string.h
+imu_madgwick_g4\bayesfunctions.o: D:\STM32\ARM\ARMCC\Bin\..\include\math.h
+imu_madgwick_g4\bayesfunctions.o: D:\STM32\ARM\ARMCC\Bin\..\include\float.h
+imu_madgwick_g4\bayesfunctions.o: D:\STM32\ARM\ARMCC\Bin\..\include\limits.h
+imu_madgwick_g4\bayesfunctions.o: D:\STM32\ARM\PACK\ARM\CMSIS-DSP\1.14.4\Include\arm_math_memory.h
+imu_madgwick_g4\bayesfunctions.o: D:\STM32\ARM\PACK\ARM\CMSIS-DSP\1.14.4\Include\dsp/none.h
+imu_madgwick_g4\bayesfunctions.o: D:\STM32\ARM\PACK\ARM\CMSIS-DSP\1.14.4\Include\dsp/utils.h
+imu_madgwick_g4\bayesfunctions.o: D:\STM32\ARM\PACK\ARM\CMSIS-DSP\1.14.4\Include\dsp/statistics_functions.h
+imu_madgwick_g4\bayesfunctions.o: D:\STM32\ARM\PACK\ARM\CMSIS-DSP\1.14.4\Include\dsp/basic_math_functions.h
+imu_madgwick_g4\bayesfunctions.o: D:\STM32\ARM\PACK\ARM\CMSIS-DSP\1.14.4\Include\dsp/fast_math_functions.h

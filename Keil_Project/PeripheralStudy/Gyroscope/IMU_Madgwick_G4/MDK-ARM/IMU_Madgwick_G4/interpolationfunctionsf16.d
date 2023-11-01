@@ -1,0 +1,16 @@
+imu_madgwick_g4\interpolationfunctionsf16.o: D:\STM32\ARM\PACK\ARM\CMSIS-DSP\1.14.4\Source\InterpolationFunctions\InterpolationFunctionsF16.c
+imu_madgwick_g4\interpolationfunctionsf16.o: D:\STM32\ARM\PACK\ARM\CMSIS-DSP\1.14.4\Source\InterpolationFunctions\arm_bilinear_interp_f16.c
+imu_madgwick_g4\interpolationfunctionsf16.o: D:\STM32\ARM\PACK\ARM\CMSIS-DSP\1.14.4\Include\dsp/interpolation_functions_f16.h
+imu_madgwick_g4\interpolationfunctionsf16.o: D:\STM32\ARM\PACK\ARM\CMSIS-DSP\1.14.4\Include\arm_math_types_f16.h
+imu_madgwick_g4\interpolationfunctionsf16.o: D:\STM32\ARM\PACK\ARM\CMSIS-DSP\1.14.4\Include\arm_math_types.h
+imu_madgwick_g4\interpolationfunctionsf16.o: ../Drivers/CMSIS/Include/cmsis_compiler.h
+imu_madgwick_g4\interpolationfunctionsf16.o: D:\STM32\ARM\ARMCC\Bin\..\include\stdint.h
+imu_madgwick_g4\interpolationfunctionsf16.o: ../Drivers/CMSIS/Include/cmsis_armcc.h
+imu_madgwick_g4\interpolationfunctionsf16.o: D:\STM32\ARM\ARMCC\Bin\..\include\string.h
+imu_madgwick_g4\interpolationfunctionsf16.o: D:\STM32\ARM\ARMCC\Bin\..\include\math.h
+imu_madgwick_g4\interpolationfunctionsf16.o: D:\STM32\ARM\ARMCC\Bin\..\include\float.h
+imu_madgwick_g4\interpolationfunctionsf16.o: D:\STM32\ARM\ARMCC\Bin\..\include\limits.h
+imu_madgwick_g4\interpolationfunctionsf16.o: D:\STM32\ARM\PACK\ARM\CMSIS-DSP\1.14.4\Include\arm_math_memory.h
+imu_madgwick_g4\interpolationfunctionsf16.o: D:\STM32\ARM\PACK\ARM\CMSIS-DSP\1.14.4\Include\dsp/none.h
+imu_madgwick_g4\interpolationfunctionsf16.o: D:\STM32\ARM\PACK\ARM\CMSIS-DSP\1.14.4\Include\dsp/utils.h
+imu_madgwick_g4\interpolationfunctionsf16.o: D:\STM32\ARM\PACK\ARM\CMSIS-DSP\1.14.4\Source\InterpolationFunctions\arm_linear_interp_f16.c
