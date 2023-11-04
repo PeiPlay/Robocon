@@ -8,7 +8,7 @@ imu_madgwick_g4\icm42688.o: ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_de
 imu_madgwick_g4\icm42688.o: ../Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g4xx.h
 imu_madgwick_g4\icm42688.o: ../Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g431xx.h
 imu_madgwick_g4\icm42688.o: ../Drivers/CMSIS/Include/core_cm4.h
-imu_madgwick_g4\icm42688.o: D:\STM32\ARM\ARMCC\Bin\..\include\stdint.h
+imu_madgwick_g4\icm42688.o: D:\programfiles\Keil_5\ARM\ARMCC\Bin\..\include\stdint.h
 imu_madgwick_g4\icm42688.o: ../Drivers/CMSIS/Include/cmsis_version.h
 imu_madgwick_g4\icm42688.o: ../Drivers/CMSIS/Include/cmsis_compiler.h
 imu_madgwick_g4\icm42688.o: ../Drivers/CMSIS/Include/cmsis_armcc.h
@@ -16,7 +16,7 @@ imu_madgwick_g4\icm42688.o: ../Drivers/CMSIS/Include/mpu_armv7.h
 imu_madgwick_g4\icm42688.o: ../Drivers/CMSIS/Device/ST/STM32G4xx/Include/system_stm32g4xx.h
 imu_madgwick_g4\icm42688.o: ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal.h
 imu_madgwick_g4\icm42688.o: ../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h
-imu_madgwick_g4\icm42688.o: D:\STM32\ARM\ARMCC\Bin\..\include\stddef.h
+imu_madgwick_g4\icm42688.o: D:\programfiles\Keil_5\ARM\ARMCC\Bin\..\include\stddef.h
 imu_madgwick_g4\icm42688.o: ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_rcc_ex.h
 imu_madgwick_g4\icm42688.o: ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_gpio.h
 imu_madgwick_g4\icm42688.o: ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_gpio_ex.h
@@ -49,7 +49,7 @@ imu_madgwick_g4\icm42688.o: ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_ll_pwr
 imu_madgwick_g4\icm42688.o: ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_ll_tim.h
 imu_madgwick_g4\icm42688.o: ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_ll_gpio.h
 imu_madgwick_g4\icm42688.o: ../Core/Inc/spi.h
-imu_madgwick_g4\icm42688.o: D:\STM32\ARM\ARMCC\Bin\..\include\stdbool.h
-imu_madgwick_g4\icm42688.o: D:\STM32\ARM\ARMCC\Bin\..\include\stdio.h
-imu_madgwick_g4\icm42688.o: D:\STM32\ARM\ARMCC\Bin\..\include\string.h
-imu_madgwick_g4\icm42688.o: D:\STM32\ARM\ARMCC\Bin\..\include\math.h
+imu_madgwick_g4\icm42688.o: D:\programfiles\Keil_5\ARM\ARMCC\Bin\..\include\stdbool.h
+imu_madgwick_g4\icm42688.o: D:\programfiles\Keil_5\ARM\ARMCC\Bin\..\include\stdio.h
+imu_madgwick_g4\icm42688.o: D:\programfiles\Keil_5\ARM\ARMCC\Bin\..\include\string.h
+imu_madgwick_g4\icm42688.o: D:\programfiles\Keil_5\ARM\ARMCC\Bin\..\include\math.h

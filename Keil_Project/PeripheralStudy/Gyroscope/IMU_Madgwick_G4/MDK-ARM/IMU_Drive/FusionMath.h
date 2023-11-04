@@ -18,7 +18,7 @@
 // Definitions
 
 /**
- * @brief 3D vector.
+ * @brief 3D 向量的结构体.
  */
 typedef union {
     float array[3];
@@ -31,7 +31,7 @@ typedef union {
 } FusionVector;
 
 /**
- * @brief Quaternion.
+ * @brief Quaternion.//四元数
  */
 typedef union {
     float array[4];
@@ -45,7 +45,7 @@ typedef union {
 } FusionQuaternion;
 
 /**
- * @brief 3x3 matrix in row-major order.
+ * @brief 3x3 matrix in row-major order.//3x3矩阵，行优先。用于计算四元数
  * See http://en.wikipedia.org/wiki/Row-major_order
  */
 typedef union {
@@ -65,7 +65,7 @@ typedef union {
 } FusionMatrix;
 
 /**
- * @brief Euler angles.  Roll, pitch, and yaw correspond to rotations around
+ * @brief Euler angles.  Roll, pitch, and yaw correspond to rotations around//欧拉角
  * X, Y, and Z respectively.
  */
 typedef union {
@@ -79,27 +79,27 @@ typedef union {
 } FusionEuler;
 
 /**
- * @brief Vector of zeros.
+ * @brief Vector of zeros.//零向量
  */
 #define FUSION_VECTOR_ZERO ((FusionVector){ .array = {0.0f, 0.0f, 0.0f} })
 
 /**
- * @brief Vector of ones.
+ * @brief Vector of ones.//1，1，1向量
  */
 #define FUSION_VECTOR_ONES ((FusionVector){ .array = {1.0f, 1.0f, 1.0f} })
 
 /**
- * @brief Identity quaternion.
+ * @brief Identity quaternion.//单位四元数
  */
 #define FUSION_IDENTITY_QUATERNION ((FusionQuaternion){ .array = {1.0f, 0.0f, 0.0f, 0.0f} })
 
 /**
- * @brief Identity matrix.
+ * @brief Identity matrix.//单位矩阵
  */
 #define FUSION_IDENTITY_MATRIX ((FusionMatrix){ .array = {{1.0f, 0.0f, 0.0f}, {0.0f, 1.0f, 0.0f}, {0.0f, 0.0f, 1.0f}} })
 
 /**
- * @brief Euler angles of zero.
+ * @brief Euler angles of zero.//零欧拉角
  */
 #define FUSION_EULER_ZERO ((FusionEuler){ .array = {0.0f, 0.0f, 0.0f} })
 
@@ -120,7 +120,7 @@ typedef union {
 // Inline functions - Degrees and radians conversion
 
 /**
- * @brief Converts degrees to radians.
+ * @brief Converts degrees to radians.//角度转弧度
  * @param degrees Degrees.
  * @return Radians.
  */
@@ -129,7 +129,7 @@ static inline float FusionDegreesToRadians(const float degrees) {
 }
 
 /**
- * @brief Converts radians to degrees.
+ * @brief Converts radians to degrees.//弧度转角度
  * @param radians Radians.
  * @return Degrees.
  */
@@ -141,7 +141,7 @@ static inline float FusionRadiansToDegrees(const float radians) {
 // Inline functions - Arc sine
 
 /**
- * @brief Returns the arc sine of the value.
+ * @brief Returns the arc sine of the value.//反正弦函数
  * @param value Value.
  * @return Arc sine of the value.
  */

@@ -241,17 +241,17 @@
 
   /**
    * @struct sSignalPathReset_t
-   * @brief  Register:SIGNAL_PATH_RESET
+   * @brief  Register:SIGNAL_PATH_RESET//信号路径重置寄存器
    * @n        -------------------------------------------------------------------------------------------------------------------------------------- ---
    * @n        |    b7    |      b6      |         b5        |         b4         |          b3         |        b2       |       b1       |      b0    |
    * @n        ------------------------------------------------------------------------------------------------------------------------------------------
    * @n        | Reserved | DMP_INIT_EN  |  DMP_MEM_RESET_EN |      Reserved      |   ABORT_AND_RESET   |   TMST_STROBE   |   FIFO_FLUSH   |  Reserved  |
    * @n        ------------------------------------------------------------------------------------------------------------------------------------------
-   * @n        DMP_INIT_EN: When this bit is set to 1, the DMP is enabled
-   * @n        DMP_MEM_RESET_EN: When this bit is set to 1, the DMP memory is reset
-   * @n        ABORT_AND_RESET : When this bit is set to 1, the signal path is reset by restarting the ODR counter and signal path controls
-   * @n        TMST_STROBE : When this bit is set to 1, the time stamp counter is latched into the time stamp register. This is a write on clear bit.
-   * @n        FIFO_FLUSH : When set to 1, FIFO will get flushed.
+   * @n        DMP_INIT_EN: 该位为1时，DMP初始化启动
+   * @n        DMP_MEM_RESET_EN: 该位为1时，DMP内存复位
+   * @n        ABORT_AND_RESET : 该位为1时，信号路径重置，ODR计数器和信号路径控制器重新启动
+   * @n        TMST_STROBE : 当该位为1时，时间戳计数器被锁存到时间戳寄存器中
+   * @n        FIFO_FLUSH : 当该位为1时，FIFO将被刷新
    */
   typedef struct {
     uint8_t   reserved0: 1; 
@@ -265,24 +265,24 @@
   } __attribute__ ((packed)) sSignalPathReset_t;
   /**
    * @struct sAPEXConfig0_t
-   * @brief  Register:APEX_Config0
+   * @brief  Register:APEX_Config0//APEX配置寄存器
    * @n        -------------------------------------------------------------------------------------------------------------------------------------- --------------------
    * @n        |            b7          |        b6      |         b5         |         b4         |          b3        |        b2      |       b1        |      b0     |
    * @n        -----------------------------------------------------------------------------------------------------------------------------------------------------------
    * @n        |     DMP_POWER_SAVE     |   TAP_ENABLE   |     PED_ENABLE     |     TILT_ENABLE    |        R2W_EN      |    Reserved    |             DMP_ODR           |
    * @n        -----------------------------------------------------------------------------------------------------------------------------------------------------------
-   * @n        DMP_POWER_SAVE : 0: DMP power save mode not active
-   * @n                         1: DMP power save mode active (default)
-   * @n        TAP_ENABLE :0: Tap Detection not enabled (tap detection function)
-   * @n                    1: Tap Detection enabled when accelerometer ODR is set to one of the ODR 
-   * @n                    values supported by Tap Detection (200Hz, 500Hz, 1kHz)
-   * @n        PED_ENABLE  0: Pedometer not enabled
-   * @n                    1: Pedometer enabled (Pedometer)
-   * @n        TILT_ENABLE 0: Tilt Detection not enabled (tilt)
-   * @n                    1: Tilt Detection enabled
-   * @n        R2W_EN 0: Raise to Wake/Sleep not enabled
-   * @n               1: Raise to Wake/Sleep enabled
-   * @n        DMP_ODR 00: 25Hz
+   * @n        DMP_POWER_SAVE : 0: DMP省电模式未激活
+   * @n                         1: DMP省电模式激活（默认）
+   * @n        TAP_ENABLE :0: 敲击检测未启用（敲击检测功能）
+   * @n                    1: 当加速度计ODR设置为ODR之1时，启用敲击检测
+   * @n                    values supported by Tap Detection (200Hz, 500Hz, 1kHz)//支持的值
+   * @n        PED_ENABLE  0: Pedometer not enabled//计步器未启用
+   * @n                    1: Pedometer enabled (Pedometer)//计步器启用
+   * @n        TILT_ENABLE 0: Tilt Detection not enabled (tilt)//倾斜检测未启用
+   * @n                    1: Tilt Detection enabled//倾斜检测启用
+   * @n        R2W_EN 0: Raise to Wake/Sleep not enabled//唤醒/睡眠未启用
+   * @n               1: Raise to Wake/Sleep enabled//唤醒/睡眠启用
+   * @n        DMP_ODR 00: 25Hz       //DMP输出数据速率
    * @n                01: Reserved
    * @n                10: 50Hz
    * @n                11: Reserved
@@ -299,13 +299,13 @@
 
   /**
    * @struct sAccelConfig0_t
-   * @brief  Register:Accel_Config0
+   * @brief  Register:Accel_Config0//加速度计配置寄存器
    * @n        -------------------------------------------------------------------------------------------------------------------------------------- -------------------
    * @n        |            b7          |        b6       |         b5         |         b4         |          b3        |       b2       |       b1       |      b0    |
    * @n        ----------------------------------------------------------------------------------------------------------------------------------------------------------
    * @n        |                           ACCEL_FS_SEL                        |      Reserved      |                                ACCEL_ODR                          |
    * @n        ----------------------------------------------------------------------------------------------------------------------------------------------------------
-   * @n        ACCEL_FS_SEL :Full scale select for accelerometer UI interface output
+   * @n        ACCEL_FS_SEL :Full scale select for accelerometer UI interface output//UI接口输出的全幅选择
    * @n                      000: ±16g (default)
    * @n                      001: ±8g
    * @n                      010: ±4g
@@ -314,7 +314,7 @@
    * @n                      101: Reserved
    * @n                      110: Reserved
    * @n                      111: Reserved
-   * @n        ACCEL_ODR :Accelerometer ODR selection for UI interface output
+   * @n        ACCEL_ODR :Accelerometer ODR selection for UI interface output//UI接口输出的加速度计ODR选择
    * @n                   0000: Reserved
    * @n                   0001: 32kHz (LN mode)
    * @n                   0010: 16kHz (LN mode)
@@ -340,13 +340,13 @@
 
   /**
    * @struct sGyroConfig0_t
-   * @brief  Register:Gyro_Config0
+   * @brief  Register:Gyro_Config0//陀螺仪配置寄存器0
    * @n        -------------------------------------------------------------------------------------------------------------------------------------- -------------------
    * @n        |            b7          |        b6       |         b5         |         b4         |          b3        |       b2       |       b1       |      b0    |
    * @n        ----------------------------------------------------------------------------------------------------------------------------------------------------------
    * @n        |                            GYRO_FS_SEL                        |      Reserved      |                                 GYRO_ODR                          |
    * @n        ----------------------------------------------------------------------------------------------------------------------------------------------------------
-   * @n        GYRO_FS_SEL : Full scale select for gyroscope UI interface output
+   * @n        GYRO_FS_SEL : Full scale select for gyroscope UI interface output//UI接口输出的陀螺仪全幅选择
    * @n                      000: ±2000dps (default)
    * @n                      001: ±1000dps
    * @n                      010: ±500dps
@@ -381,13 +381,13 @@
 
   /**
    * @struct sGyroConfig1_t
-   * @brief  Register:Gyro_Config1
+   * @brief  Register:Gyro_Config1//陀螺仪配置寄存器1
    * @n        -------------------------------------------------------------------------------------------------------------------------------------- -------------------
    * @n        |            b7          |        b6       |         b5         |         b4         |          b3        |       b2       |       b1       |      b0    |
    * @n        ----------------------------------------------------------------------------------------------------------------------------------------------------------
    * @n        |                          TEMP_FILT_BW                         |     reserved       |            GYRO_UI_FILT_ORD         |      GYRO_DEC2_M2_ORD       |
    * @n        ----------------------------------------------------------------------------------------------------------------------------------------------------------
-   * @n        TEMP_FILT_BW : Set the bandwidth of the temperature signal DLPF
+   * @n        TEMP_FILT_BW : Set the bandwidth of the temperature signal DLPF//设置温度信号DLPF的带宽
    * @n                      000: DLPF BW = 4000Hz; DLPF Latency = 0.125ms (default)
    * @n                      001: DLPF BW = 170Hz; DLPF Latency = 1ms
    * @n                      010: DLPF BW = 82Hz; DLPF Latency = 2ms
@@ -416,26 +416,27 @@
 
   /**
    * @struct sGyroConfig1_t
-   * @brief  Register:Gyro_Config1
+   * @brief  Register:Gyro_Config1//陀螺仪配置寄存器1
    * @n        -------------------------------------------------------------------------------------------------------------------------------------- -------------------
    * @n        |            b7          |        b6       |         b5         |         b4         |          b3        |       b2       |       b1       |      b0    |
    * @n        ----------------------------------------------------------------------------------------------------------------------------------------------------------
    * @n        |                    Reserved              |      TEMP_DIS      |        IDLE        |                GYRO_MODE            |           ACCEL_MODE        |
    * @n        ----------------------------------------------------------------------------------------------------------------------------------------------------------
-   * @n        TEMP_DIS : 0: Temperature sensor is enabled (default)
-   * @n                   1: Temperature sensor is disabled
-   * @n        IDLE : 0: When the accelerometer and gyroscope are powered off, the chip will go to OFF state, since the RC oscillator will also be powered off
-   * @n               1: RC oscillator is powered on even if the accelerometer and gyroscope are powered off
-   * @n        GYRO_MODE :00: Turns gyroscope off (default)
-   * @n                   01: Places gyroscope in Standby Mode
+   * @n        TEMP_DIS : 0: Temperature sensor is enabled (default)//温度传感器使能
+   * @n                   1: Temperature sensor is disabled//温度传感器禁用
+   *           //
+   * @n        IDLE : 0: 当加速度计和陀螺仪关闭电源时，芯片将进入OFF状态，因为RC振荡器也将关闭电源
+   * @n               1: 即使加速度计和陀螺仪关闭电源，RC振荡器也会通电
+   * @n        GYRO_MODE :00: Turns gyroscope off (default)//陀螺仪关闭
+   * @n                   01: Places gyroscope in Standby Mode//陀螺仪待机模式
    * @n                   10: Reserved
-   * @n                   11: Places gyroscope in Low Noise (LN) Mode
-   * @n                   Gyroscope needs to be kept ON for a minimum of 45ms. When transitioning from OFF to any of the other modes, do not issue any register writes for 200μs
-   * @n        ACCEL_MODE: 00: Turns accelerometer off (default)
-   * @n                    01: Turns accelerometer off
-   * @n                    10: Places accelerometer in Low Power (LP) Mode
-   * @n                    11: Places accelerometer in Low Noise (LN) Mode                
-   * @n                    When transitioning from OFF to any of the other modes, do not issue any register writes for 200μs
+   * @n                   11: Places gyroscope in Low Noise (LN) Mode//陀螺仪低噪声模式
+   * @n                   陀螺仪需要保持开启至少45ms。从OFF转换到任何其他模式时，不要在200μs内发出任何寄存器写入
+   * @n        ACCEL_MODE: 00: Turns accelerometer off (default)//加速度计关闭
+   * @n                    01: Turns accelerometer off//加速度计待机模式
+   * @n                    10: Places accelerometer in Low Power (LP) Mode//加速度计低功耗模式
+   * @n                    11: Places accelerometer in Low Noise (LN) Mode//加速度计低噪声模式                
+   * @n                    从OFF转换到任何其他模式时，不要在200μs内发出任何寄存器写入
    */
   typedef struct {
     uint8_t   accelMode: 2; 
@@ -447,25 +448,25 @@
 
   /**
    * @struct sINTFConfig0_t
-   * @brief  Register:INTF_Config0
+   * @brief  Register:INTF_Config0//接口配置寄存器0
    * @n        -------------------------------------------------------------------------------------------------------------------------------------- ---------------------
    * @n        |            b7          |        b6       |         b5         |         b4         |          b3         |        b2       |       b1       |      b0    |
    * @n        ------------------------------------------------------------------------------------------------------------------------------------------------------------
    * @n        | FIFO_HOLD_LAST_DATA_EN | FIFO_COUNT_REC  |  FIFO_COUNT_ENDIAN | SENSOR_DATA_ENDIAN |                   Reserved            |          UI_SIFS_CFG        |
    * @n        ------------------------------------------------------------------------------------------------------------------------------------------------------------
-   * @n        FIFO_HOLD_LAST_DATA_EN: Method for processing invalid data, 0: Registers do not receive invalid samples. Registers hold last valid sample until new one arrives
-   * @n                                                           FIFO : 16-bit FIFO packet: Same as Sense Registers (Do not receive invalid samples. They hold the last valid sample. Repeated reading before new sample received will yield copies of the last valid sample)
-   * @n                                                                  20-bit FIFO packet: Invalid samples are indicated with the value -524288
-   * @n                                                        1: Not receive invalid samples. Registers hold last valid sample until new one arrives
-   * @n        FIFO_COUNT_REC: 0: FIFO count is reported in bytes
-   * @n                        1: FIFO count is reported in records
-   * @n        FIFO_COUNT_ENDIAN : 0: FIFO count is reported in Little Endian format
-   * @n                            1: FIFO count is reported in Big Endian format (default)
-   * @n        SENSOR_DATA_ENDIAN : 0: Sensor data is reported in Little Endian format
-   * @n                             1: Sensor data is reported in Big Endian format (default)
-   * @n        UI_SIFS_CFG: 0x: Reserved
-   * @n                     10: Disable SPI
-   * @n                     11: Disable I2C
+   * @n        FIFO_HOLD_LAST_DATA_EN: 处理无效数据的方法， 0：寄存器不接收无效样本。寄存器保持最后一个有效样本，直到新样本到达
+   * @n                                                           FIFO : 16位FIFO数据包：与Sense寄存器相同（不接收无效样本。它们保持最后一个有效样本。在接收到新样本之前重复读取将产生最后一个有效样本的副本）
+   * @n                                                                  20-bit FIFO packet: 无效样本用值-524288表示
+   * @n                                                     1: 不接收无效样本。寄存器保持最后一个有效样本，直到新样本到达
+   * @n        FIFO_COUNT_REC: 0: FIFO count is reported in bytes//FIFO计数以字节为单位报告
+   * @n                        1: FIFO count is reported in records//FIFO计数以FIFO记录为单位报告
+   * @n        FIFO_COUNT_ENDIAN : 0: FIFO count is reported in Little Endian format//FIFO计数以小端序格式报告
+   * @n                            1: FIFO count is reported in Big Endian format (default)//FIFO计数以大端序格式报告
+   * @n        SENSOR_DATA_ENDIAN : 0: Sensor data is reported in Little Endian format//传感器数据以小端序格式报告
+   * @n                             1: Sensor data is reported in Big Endian format (default)//传感器数据以大端序格式报告
+   * @n        UI_SIFS_CFG: 0x: Reserved  //UI_SIFS_CFG: 00 | 01: 保留
+   * @n                     10: Disable SPI //UI_SIFS_CFG: 10: 禁用SPI
+   * @n                     11: Disable I2C //UI_SIFS_CFG: 11: 禁用I2C
    */
   typedef struct {
     uint8_t   UISifsConfig: 2; 
@@ -479,20 +480,20 @@
 
   /**
    * @struct sINTFConfig1_t
-   * @brief  Register:INTF_Config1
+   * @brief  Register:INTF_Config1//接口配置寄存器1
    * @n        -------------------------------------------------------------------------------------------------------------------------------------- -------------------
    * @n        |            b7          |        b6       |         b5         |         b4         |          b3        |       b2       |       b1       |      b0    |
    * @n        ----------------------------------------------------------------------------------------------------------------------------------------------------------
    * @n        |                                       Reserved                                     |  ACCEL_LP_CLK_SEL  |    RTC_MODE    |              CLKSEL         |
    * @n        ----------------------------------------------------------------------------------------------------------------------------------------------------------
-   * @n        ACCEL_LP_CLK_SEL : 0: Accelerometer LP mode uses Wake Up oscillator clock
-   * @n                           1: Accelerometer LP mode uses RC oscillator clock
-   * @n        RTC_MODE : 0: No input RTC clock is required
-   * @n                   1: RTC clock input is required
-   * @n        CLKSEL : 00: Always select internal RC oscillator
-   * @n                 01: Select PLL when available, else select RC oscillator (default)
-   * @n                 10: Reserved
-   * @n                 11: Disable all clocks
+   * @n        ACCEL_LP_CLK_SEL : 0: Accelerometer LP mode uses Wake Up oscillator clock//加速度计LP模式使用唤醒振荡器时钟
+   * @n                           1: Accelerometer LP mode uses RC oscillator clock//加速度计LP模式使用RC振荡器时钟
+   * @n        RTC_MODE : 0: No input RTC clock is required //不需要输入RTC时钟
+   * @n                   1: RTC clock input is required  //需要输入RTC时钟
+   * @n        CLKSEL : 00: Always select internal RC oscillator  //始终选择内部RC振荡器
+   * @n                 01: Select PLL when available, else select RC oscillator (default)//当可用时选择PLL，否则选择RC振荡器（默认）
+   * @n                 10: Reserved      //保留
+   * @n                 11: Disable all clocks//禁用所有时钟
    */
   typedef struct {
     uint8_t   clksel: 2; 
@@ -503,18 +504,18 @@
 
   /**
    * @struct sAccelConfig1_t
-   * @brief  Register:Accel_Config1
+   * @brief  Register:Accel_Config1//加速度计配置寄存器1
    * @n        -------------------------------------------------------------------------------------------------------------------------------------- -------------------
    * @n        |            b7          |        b6       |         b5         |         b4         |          b3        |       b2       |       b1       |      b0    |
    * @n        ----------------------------------------------------------------------------------------------------------------------------------------------------------
    * @n        |                            Reserved                           |          ACCEL_UI_FILT_ORD              |         ACCEL_DEC2_M2_ORD       |  Reserved  |
    * @n        ----------------------------------------------------------------------------------------------------------------------------------------------------------
-   * @n        ACCEL_UI_FILT_ORD : Selects order of ACCEL UI filter
+   * @n        ACCEL_UI_FILT_ORD : Selects order of ACCEL UI filter//选择ACCEL UI滤波器的阶数
    * @n                            00: 1st Order
    * @n                            01: 2nd Order
    * @n                            10: 3rd Order
    * @n                            11: Reserved
-   * @n        ACCEL_DEC2_M2_ORD : Order of Accelerometer DEC2_M2 filter
+   * @n        ACCEL_DEC2_M2_ORD : Order of Accelerometer DEC2_M2 filter//加速度计DEC2_M2滤波器的阶数
    * @n                            00: Reserved
    * @n                            01: Reserved
    * @n                            10: 3rd order
@@ -528,14 +529,14 @@
   } __attribute__ ((packed)) sAccelConfig1_t;
 
   /**
-   * @struct sGyroAccelConfig0_t
-   * @brief  Register:Gyro_Accel_Config0
+   * @struct sGyroAccelConfig0_t 
+   * @brief  Register:Gyro_Accel_Config0//陀螺仪加速度计配置寄存器0
    * @n        -------------------------------------------------------------------------------------------------------------------------------------- -------------------
    * @n        |            b7          |        b6       |         b5         |         b4         |          b3        |       b2       |       b1       |      b0    |
    * @n        ----------------------------------------------------------------------------------------------------------------------------------------------------------
    * @n        |                                       ACCEL_UI_FILT_BW                             |                             GYRO_UI_FILT_BW                       |
    * @n        ----------------------------------------------------------------------------------------------------------------------------------------------------------
-   * @n        ACCEL_UI_FILT_BW : Bandwidth for Accel LPF
+   * @n        ACCEL_UI_FILT_BW : Bandwidth for Accel LPF//加速度计LPF的带宽
    * @n                           LN Mode:
    * @n                              0 BW=ODR/2
    * @n                              1 BW=max(400Hz, ODR)/4 (default)
@@ -556,7 +557,7 @@
    * @n                              2 to 5 Reserved
    * @n                              6 16x AVG filter
    * @n                              7 to 15 Reserved
-   * @n        GYRO_UI_FILT_BW :Bandwidth for Gyro LPF
+   * @n        GYRO_UI_FILT_BW :Bandwidth for Gyro LPF//陀螺仪LPF的带宽
    * @n                           LN Mode:
    * @n                            0 BW=ODR/2
    * @n                            1 BW=max(400Hz, ODR)/4 (default)
@@ -577,14 +578,14 @@
 
   /**
    * @struct sAPEXConfig7_t
-   * @brief  Register:APEX_Config7
+   * @brief  Register:APEX_Config7//APEX配置寄存器7
    * @n        -------------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------
    * @n        |            b7        |           b6         |           b5           |           b4           |           b3           |          b2        |          b1        |        b0          |
    * @n        -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
    * @n        |                                                      TAP_MIN_JERK_THR                                                                       |             TAP_MAX_PEAK_TOL            |
    * @n        -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-   * @n        TAP_MIN_JERK_THR  Tap detection minimum jerk threshold, use default value 010001b
-   * @n        TAP_MAX_PEAK_TOL  Point detection maximum peak tolerance, use default value 01b
+   * @n        TAP_MIN_JERK_THR  Tap detection minimum jerk threshold, use default value 010001b//敲击检测最小抖动阈值，使用默认值010001b
+   * @n        TAP_MAX_PEAK_TOL  Point detection maximum peak tolerance, use default value 01b//点检测最大峰值容差，使用默认值01b
    */
   typedef struct {
     uint8_t   tapMaxPeakTol: 2; 
@@ -593,15 +594,15 @@
 
   /**
    * @struct sAPEXConfig8_t
-   * @brief  Register:APEX_Config8
+   * @brief  Register:APEX_Config8//APEX配置寄存器8
    * @n        -------------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------
    * @n        |            b7        |           b6         |           b5           |           b4           |           b3           |          b2        |          b1        |        b0          |
    * @n        -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
    * @n        |        Reserved      |                   TAP_TMAX                    |                     TAP_TAVG                    |                           TAP_TMIN                           |
    * @n        -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-   * @n        TAP_TMAX  Tap measurement window (number of samples), use default value 01b
-   * @n        TAP_TAVG  Tap energy measurement window (number of samples), use default value 01b
-   * @n        TAP_TMIN  Single tap window (number of samples), use default value 011b
+   * @n        TAP_TMAX  Tap measurement window (number of samples), use default value 01b//敲击测量窗口（样本数），使用默认值01b
+   * @n        TAP_TAVG  Tap energy measurement window (number of samples), use default value 01b//敲击能量测量窗口（样本数），使用默认值01b
+   * @n        TAP_TMIN  Single tap window (number of samples), use default value 011b//单击窗口（样本数），使用默认值011b
    */
   typedef struct {
     uint8_t   tapTmin: 3; 
@@ -618,12 +619,12 @@
    * @n        -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
    * @n        |           TILT_WAIT_TIME_SEL                |                                 SLEEP_TIME_OUT                           |                              Reserved                        |
    * @n        -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-   * @n        TILT_WAIT_TIME_SEL  Config delay time after tilt is detected before interrupt is triggered
+   * @n        TILT_WAIT_TIME_SEL  Config delay time after tilt is detected before interrupt is triggered//倾斜被检测到后触发中断之前的延迟时间
    * @n                            00: 0s
    * @n                            01: 2s
    * @n                            10: 4s (default)
    * @n                            11: 6s
-   * @n        SLEEP_TIME_OUT  Configures the time for sleep detection, for Raise to Wake/Sleep
+   * @n        SLEEP_TIME_OUT  Configures the time for sleep detection, for Raise to Wake/Sleep//配置睡眠检测的时间，用于唤醒/睡眠
    * @n                        000: 1.28sec
    * @n                        001: 2.56sec
    * @n                        010: 3.84sec
@@ -641,7 +642,7 @@
 
   /**
    * @struct sSMDConfig_t
-   * @brief  Register:SMD_Config
+   * @brief  Register:SMD_Config//SMD配置寄存器
    * @n        -------------------------------------------------------------------------------------------------------------------------------------- --------------------
    * @n        |            b7        |        b6      |         b5         |         b4         |          b3        |        b2      |       b1        |      b0       |
    * @n        -----------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -666,18 +667,18 @@
 
   /**
    * @struct sGyroConfigStatic9_t
-   * @brief  Register:Gyro_Config_Static9
+   * @brief  Register:Gyro_Config_Static9//陀螺仪静态配置寄存器9
    * @n        -------------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------
    * @n        |            b7        |           b6         |           b5           |           b4           |           b3           |          b2        |          b1        |        b0          |
    * @n        -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
    * @n        |                  Reserved                   | GYRO_Z_NF_COSWZ_SEL[0] | GYRO_Y_NF_COSWZ_SEL[0] | GYRO_X_NF_COSWZ_SEL[0] | GYRO_Z_NF_COSWZ[8] | GYRO_Y_NF_COSWZ[8] | GYRO_X_NF_COSWZ[8] |
    * @n        -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-   * @n        GYRO_Z_NF_COSWZ_SEL[0] :Used for gyroscope Z-axis notch filter frequency selection
-   * @n        GYRO_Y_NF_COSWZ_SEL[0] :Used for gyroscope Y-axis notch filter frequency selection
-   * @n        GYRO_X_NF_COSWZ_SEL[0] :Used for gyroscope X-axis notch filter frequency selection
-   * @n        GYRO_Z_NF_COSWZ[8] :Used for gyroscope Z-axis notch filter frequency selection
-   * @n        GYRO_Y_NF_COSWZ[8] :Used for gyroscope Y-axis notch filter frequency selection
-   * @n        GYRO_X_NF_COSWZ[8] :Used for gyroscope X-axis notch filter frequency selection
+   * @n        GYRO_Z_NF_COSWZ_SEL[0] :Used for gyroscope Z-axis notch filter frequency selection//用于陀螺仪Z轴陷波滤波器频率选择
+   * @n        GYRO_Y_NF_COSWZ_SEL[0] :Used for gyroscope Y-axis notch filter frequency selection//用于陀螺仪Y轴陷波滤波器频率选择
+   * @n        GYRO_X_NF_COSWZ_SEL[0] :Used for gyroscope X-axis notch filter frequency selection//用于陀螺仪X轴陷波滤波器频率选择
+   * @n        GYRO_Z_NF_COSWZ[8] :Used for gyroscope Z-axis notch filter frequency selection//用于陀螺仪Z轴陷波滤波器频率选择
+   * @n        GYRO_Y_NF_COSWZ[8] :Used for gyroscope Y-axis notch filter frequency selection//用于陀螺仪Y轴陷波滤波器频率选择
+   * @n        GYRO_X_NF_COSWZ[8] :Used for gyroscope X-axis notch filter frequency selection//用于陀螺仪X轴陷波滤波器频率选择
    */
   typedef struct {
     uint8_t   gyroNFCoswzX8: 1; 
@@ -691,16 +692,16 @@
 
   /**
    * @struct sGyroConfigStatic2_t
-   * @brief  Register:Gyro_Config_Static2
+   * @brief  Register:Gyro_Config_Static2//陀螺仪静态配置寄存器2
    * @n        -------------------------------------------------------------------------------------------------------------------------------------- ---------------------------------------
    * @n        |            b7        |           b6         |           b5          |         b4         |          b3       |         b2       |          b1         |        b0          |
    * @n        ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
    * @n        |                                                                     Reserved                                                    |     GYRO_AAF_DIS    |     GYRO_NF_DIS    |
    * @n        ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-   * @n        GYRO_AAF_DIS :0: Enable gyroscope anti-aliasing filter (default)
-   * @n                      1: Disable gyroscope anti-aliasing filter
-   * @n        GYRO_NF_DIS   0: Enable Notch Filter (default)
-   * @n                      1: Disable Notch Filter
+   * @n        GYRO_AAF_DIS :0: Enable gyroscope anti-aliasing filter (default)//启用陀螺仪抗混叠滤波器（默认）
+   * @n                      1: Disable gyroscope anti-aliasing filter//禁用陀螺仪抗混叠滤波器
+   * @n        GYRO_NF_DIS   0: Enable Notch Filter (default)//启用陷波滤波器（默认）
+   * @n                      1: Disable Notch Filter//禁用陷波滤波器
    */
   typedef struct {
     uint8_t   gyroNFDis: 1; 
@@ -710,14 +711,14 @@
 
   /**
    * @struct sGyroConfigStatic5_t
-   * @brief  Register:Gyro_Config_Static5
+   * @brief  Register:Gyro_Config_Static5//陀螺仪静态配置寄存器5
    * @n         -------------------------------------------------------------------------------------------------------------------------------------- ---------------------------------------
    * @n         |            b7        |           b6         |           b5          |         b4         |          b3       |         b2       |          b1         |        b0          |
    * @n         ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
    * @n         |                                     GYRO_AAF_BITSHIFT                                    |                            GYRO_AAF_DELTSQR[11:8]                               |
    * @n         ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-   * @n         GYRO_AAF_BITSHIFT :Controls bandwidth of the gyroscope anti-alias filter
-   * @n         GYRO_AAF_DELTSQR[11:8]   Controls bandwidth of the gyroscope anti-alias filter
+   * @n         GYRO_AAF_BITSHIFT :Controls bandwidth of the gyroscope anti-alias filter//控制陀螺仪抗混叠滤波器的带宽
+   * @n         GYRO_AAF_DELTSQR[11:8]   Controls bandwidth of the gyroscope anti-alias filter//控制陀螺仪抗混叠滤波器的带宽
   */
   typedef struct {
     uint8_t   gyroAAFDeltsqr: 4; 
@@ -952,12 +953,27 @@
    * @param accelMode Accelerometer operating mode
    * @n      0 for operating in low-power mode
    * @n      1 for operating in low-noise mode
+   * 
+   * 如果选择0，将会把加速度计设置成低功耗模式。具体表现为：
+   *  1. 向blank寄存器写0，选择BANK0
+   *  2. 向ACCEL_CONFIG0寄存器ACCEL_ODR(3:0)写15(b1111)，500Hz (LP or LN mode)
+   *  3. 向PWR_MGMT0寄存器的ACCEL_MODE(1:0)写2(b10), 把加速度计设置低功耗模式
+   *  4. 向INTF_CONFIG1寄存器的ACCEL_LP_CLK_SEL写0(b0), 加速度计LP模式使用唤醒振荡器时钟
+   *  5. 向ACCEL_CONFIG1寄存器的ACCEL_UI_FILT_ORD写2(b10), 加速度计LP模式使用3阶低通滤波器 Selects order of ACCEL UI filter
+   *  6. 向GYRO_ACCEL_CONFIG0寄存器的ACCEL_UI_FILT_BW写0(b0000), 加速度计LP模式使用ODR/2的带宽
+   * 如果选择1，将会把加速度计设置成低噪声模式。具体表现为：
+   *  1. 向blank寄存器写0，选择BANK0
+   *  2. 向ACCEL_CONFIG0寄存器ACCEL_ODR(3:0)写6，1kHz (LN mode) (default)
+   *  3. 向ACCEL_CONFIG1寄存器的ACCEL_UI_FILT_ORD写2(b10), 加速度计LP模式使用3阶低通滤波器 Selects order of ACCEL UI filter
+   *  4. 向GYRO_ACCEL_CONFIG0寄存器的ACCEL_UI_FILT_BW写0(b0000), 加速度计LP模式使用ODR/2的带宽
+   * 其他选择报错
    */
   void tapDetectionInit(uint8_t accelMode);
 
   /**
    * @fn getTapInformation
    * @brief Get tap information
+   * 作用：读取ICM42688_APEX_DATA4寄存器并把其对应位填充到_tapNum、_tapAxis、_tapDir变量中
    */
   void getTapInformation(void);
 
@@ -967,6 +983,7 @@
    * @return The number of tap
    * @retval TAP_SINGLE   Single-tap
    * @retval TAP_DOUBLE   Double tap
+   * 返回_tapNum的值
    */
   uint8_t numberOfTap(void);
 
@@ -977,12 +994,14 @@
    * @retval X_AXIS   X-axis
    * @retval Y_AXIS   Y-axis
    * @retval Z_AXIS   Z-axis
+   * 返回_tapAxis的值
    */
   uint8_t axisOfTap(void);
 
   /**
    * @fn wakeOnMotionInit
    * @brief Wake on motion init
+   * 
    */
   void wakeOnMotionInit(void);
 

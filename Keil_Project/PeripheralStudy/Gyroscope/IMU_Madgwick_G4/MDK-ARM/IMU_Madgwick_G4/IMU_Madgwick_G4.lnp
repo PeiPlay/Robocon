@@ -1,4 +1,4 @@
---cpu=Cortex-M4.fp.sp
+--cpu=Cortex-M4.fp
 "imu_madgwick_g4\startup_stm32g431xx.o"
 "imu_madgwick_g4\main.o"
 "imu_madgwick_g4\gpio.o"

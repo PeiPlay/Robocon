@@ -12,7 +12,7 @@
 #include "main.h"
 #include "i2c.h"
 
-//Register map for MMC5983MA'
+//Register map for MMC5983MA'//MMC5983MA加速度计的寄存器地址
 //http://www.memsic.com/userfiles/files/DataSheets/Magnetic-Sensors-Datasheets/MMC5983MA_Datasheet.pdf
 #define MMC5983MA_XOUT_0        0x00
 #define MMC5983MA_XOUT_1        0x01
@@ -31,7 +31,7 @@
 
 #define MMC5983MA_ADDRESS       0x30
 
-// Sample rates
+// Sample rates//采样率
 #define MODR_ONESHOT   0x00
 #define MODR_1Hz       0x01
 #define MODR_10Hz      0x02
@@ -41,14 +41,14 @@
 #define MODR_200Hz     0x06 // BW = 0x01 only
 #define MODR_1000Hz    0x07 // BW = 0x11 only
 
-//Bandwidths
+//Bandwidths//带宽
 #define MBW_100Hz 0x00  // 8 ms measurement time
 #define MBW_200Hz 0x01  // 4 ms
 #define MBW_400Hz 0x02  // 2 ms
 #define MBW_800Hz 0x03  // 0.5 ms
 
 
-// Set/Reset as a function of measurements
+// Set/Reset as a function of measurements//设置/重置为测量函数
 #define MSET_1     0x00 // Set/Reset each data measurement
 #define MSET_25    0x01 // each 25 data measurements
 #define MSET_75    0x02
@@ -58,8 +58,8 @@
 #define MSET_1000  0x06
 #define MSET_2000  0x07
 
-#define MMC5983MA_ID 0X30
-#define Mag_res 1.0f/16384.0f
+#define MMC5983MA_ID 0X30	//MMC5983MA的ID号
+#define Mag_res 1.0f/16384.0f//磁力计的分辨率
 
 typedef struct {
 	float magDataX;
@@ -87,17 +87,17 @@ uint8_t IIC_WriteByte(uint8_t dev_addr, uint8_t reg_addr, uint8_t data);
 
 void MMC5983MA_SET(void);
 void MMC5983MA_RESET(void);
-void MMC5983MA_powerDown(void);
+void MMC5983MA_powerDown(void);	
 void MMC5983MA_powerUp(uint8_t MODR);
-uint8_t MMC5983MA_getChipID(void);
-void MMC5983MA_SWreset(void);
-void MMC5983MA_init(uint8_t MODR, uint8_t MBW, uint8_t MSET);
-void MMC5983MA_selfTest(void);
-void MMC5983MA_getOffset(void);
-uint8_t MMC5983MA_status(void);
-void MMC5983MA_clearInt(void);
-void MMC5983MA_readData(void);
-uint8_t MMC5983MA_readTemperature(void);
+uint8_t MMC5983MA_getChipID(void);	//获取芯片ID
+void MMC5983MA_SWreset(void);	//软件复位
+void MMC5983MA_init(uint8_t MODR, uint8_t MBW, uint8_t MSET);//初始化
+void MMC5983MA_selfTest(void);//自检
+void MMC5983MA_getOffset(void);//获取偏移量
+uint8_t MMC5983MA_status(void);//获取状态
+void MMC5983MA_clearInt(void);//清除中断
+void MMC5983MA_readData(void);//读取数据
+uint8_t MMC5983MA_readTemperature(void);//读取温度
 
 void MMC5983MA_Check(void);
 

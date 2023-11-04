@@ -677,14 +677,15 @@ ARM Macro Assembler    Page 11
               00000400 
               00000200 
               00000000 
-Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M4.fp.sp --apcs=
-interwork --depend=imu_madgwick_g4\startup_stm32g431xx.d -oimu_madgwick_g4\star
-tup_stm32g431xx.o -I.\RTE\_IMU_Madgwick_G4 -ID:\STM32\ARM\PACK\ARM\CMSIS-DSP\1.
-14.4\Include -ID:\STM32\ARM\PACK\ARM\CMSIS-DSP\1.14.4\PrivateInclude -ID:\STM32
-\ARM\PACK\ARM\CMSIS\5.8.0\CMSIS\Core\Include -ID:\STM32\ARM\PACK\Keil\STM32G4xx
-_DFP\1.5.0\Drivers\CMSIS\Device\ST\STM32G4xx\Include --predefine="__UVISION_VER
-SION SETA 535" --predefine="_RTE_ SETA 1" --predefine="STM32G431xx SETA 1" --pr
-edefine="_RTE_ SETA 1" --list=startup_stm32g431xx.lst startup_stm32g431xx.s
+Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M4.fp --apcs=int
+erwork --depend=imu_madgwick_g4\startup_stm32g431xx.d -oimu_madgwick_g4\startup
+_stm32g431xx.o -I.\RTE\_IMU_Madgwick_G4 -ID:\programfiles\Keil_5\ARM\PACK\ARM\C
+MSIS\5.9.0\CMSIS\Core\Include -ID:\programfiles\Keil_5\ARM\PACK\ARM\CMSIS\5.9.0
+\CMSIS\DSP\Include -ID:\programfiles\Keil_5\ARM\PACK\ARM\CMSIS\5.9.0\CMSIS\DSP\
+PrivateInclude -ID:\programfiles\Keil_5\ARM\PACK\Keil\STM32G4xx_DFP\1.5.0\Drive
+rs\CMSIS\Device\ST\STM32G4xx\Include --predefine="__UVISION_VERSION SETA 524" -
+-predefine="_RTE_ SETA 1" --predefine="STM32G431xx SETA 1" --list=startup_stm32
+g431xx.lst startup_stm32g431xx.s
 
 
 

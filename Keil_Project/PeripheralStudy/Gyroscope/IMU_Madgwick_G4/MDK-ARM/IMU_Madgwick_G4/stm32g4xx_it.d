@@ -7,7 +7,7 @@ imu_madgwick_g4\stm32g4xx_it.o: ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_ha
 imu_madgwick_g4\stm32g4xx_it.o: ../Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g4xx.h
 imu_madgwick_g4\stm32g4xx_it.o: ../Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g431xx.h
 imu_madgwick_g4\stm32g4xx_it.o: ../Drivers/CMSIS/Include/core_cm4.h
-imu_madgwick_g4\stm32g4xx_it.o: D:\STM32\ARM\ARMCC\Bin\..\include\stdint.h
+imu_madgwick_g4\stm32g4xx_it.o: D:\programfiles\Keil_5\ARM\ARMCC\Bin\..\include\stdint.h
 imu_madgwick_g4\stm32g4xx_it.o: ../Drivers/CMSIS/Include/cmsis_version.h
 imu_madgwick_g4\stm32g4xx_it.o: ../Drivers/CMSIS/Include/cmsis_compiler.h
 imu_madgwick_g4\stm32g4xx_it.o: ../Drivers/CMSIS/Include/cmsis_armcc.h
@@ -15,7 +15,7 @@ imu_madgwick_g4\stm32g4xx_it.o: ../Drivers/CMSIS/Include/mpu_armv7.h
 imu_madgwick_g4\stm32g4xx_it.o: ../Drivers/CMSIS/Device/ST/STM32G4xx/Include/system_stm32g4xx.h
 imu_madgwick_g4\stm32g4xx_it.o: ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal.h
 imu_madgwick_g4\stm32g4xx_it.o: ../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h
-imu_madgwick_g4\stm32g4xx_it.o: D:\STM32\ARM\ARMCC\Bin\..\include\stddef.h
+imu_madgwick_g4\stm32g4xx_it.o: D:\programfiles\Keil_5\ARM\ARMCC\Bin\..\include\stddef.h
 imu_madgwick_g4\stm32g4xx_it.o: ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_rcc_ex.h
 imu_madgwick_g4\stm32g4xx_it.o: ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_gpio.h
 imu_madgwick_g4\stm32g4xx_it.o: ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_gpio_ex.h
@@ -52,15 +52,15 @@ imu_madgwick_g4\stm32g4xx_it.o: ./IMU_Drive/Magic.h
 imu_madgwick_g4\stm32g4xx_it.o: ./IMU_Drive/Fusion.h
 imu_madgwick_g4\stm32g4xx_it.o: ./IMU_Drive/FusionAhrs.h
 imu_madgwick_g4\stm32g4xx_it.o: ./IMU_Drive/FusionMath.h
-imu_madgwick_g4\stm32g4xx_it.o: D:\STM32\ARM\ARMCC\Bin\..\include\math.h
-imu_madgwick_g4\stm32g4xx_it.o: D:\STM32\ARM\ARMCC\Bin\..\include\stdbool.h
+imu_madgwick_g4\stm32g4xx_it.o: D:\programfiles\Keil_5\ARM\ARMCC\Bin\..\include\math.h
+imu_madgwick_g4\stm32g4xx_it.o: D:\programfiles\Keil_5\ARM\ARMCC\Bin\..\include\stdbool.h
 imu_madgwick_g4\stm32g4xx_it.o: ./IMU_Drive/FusionAxes.h
 imu_madgwick_g4\stm32g4xx_it.o: ./IMU_Drive/FusionCalibration.h
 imu_madgwick_g4\stm32g4xx_it.o: ./IMU_Drive/FusionCompass.h
 imu_madgwick_g4\stm32g4xx_it.o: ./IMU_Drive/FusionOffset.h
 imu_madgwick_g4\stm32g4xx_it.o: ../Core/Inc/spi.h
 imu_madgwick_g4\stm32g4xx_it.o: ./IMU_Drive/ICM42688.h
-imu_madgwick_g4\stm32g4xx_it.o: D:\STM32\ARM\ARMCC\Bin\..\include\stdio.h
+imu_madgwick_g4\stm32g4xx_it.o: D:\programfiles\Keil_5\ARM\ARMCC\Bin\..\include\stdio.h
 imu_madgwick_g4\stm32g4xx_it.o: ../Core/Inc/usart.h
 imu_madgwick_g4\stm32g4xx_it.o: ./Peripheral/Temp.h
 imu_madgwick_g4\stm32g4xx_it.o: ./Peripheral/ws2812.h

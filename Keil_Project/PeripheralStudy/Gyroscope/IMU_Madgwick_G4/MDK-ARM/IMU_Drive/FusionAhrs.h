@@ -1,8 +1,8 @@
 /**
  * @file FusionAhrs.h
  * @author Seb Madgwick
- * @brief AHRS algorithm to combine gyroscope, accelerometer, and magnetometer
- * measurements into a single measurement of orientation relative to the Earth.
+ * @brief AHRS互补滤波算法，结合加速度计和陀螺仪，计算姿态。
+ *
  */
 
 #ifndef FUSION_AHRS_H

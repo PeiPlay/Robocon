@@ -56,6 +56,7 @@ sINTSource_t  INTSource;
  * @param   byte: byte to write
  * @return  received byte
  * */
+//SPI通信接口函数，用于读写ICM42688寄存器
 static uint8_t SPI_WR_Byte(SPI_HandleTypeDef *hspi, uint8_t byte) {
 	uint8_t feedback = 0;
 
@@ -70,6 +71,7 @@ static uint8_t SPI_WR_Byte(SPI_HandleTypeDef *hspi, uint8_t byte) {
 	return feedback;
 }
 
+//写寄存器函数，用于写ICM42688寄存器
 void writeReg(uint8_t reg, uint8_t* pBuf, size_t size)
 {
 	
@@ -83,7 +85,7 @@ void writeReg(uint8_t reg, uint8_t* pBuf, size_t size)
 	SPI2_CS_H;
 
 }
-
+//读寄存器函数，用于读ICM42688寄存器
 void readReg(uint8_t reg, uint8_t* pBuf, size_t size)
 {
 	uint8_t address = reg | 0x80;
@@ -97,36 +99,40 @@ void readReg(uint8_t reg, uint8_t* pBuf, size_t size)
 int begin(void)
 {
   uint8_t bank = 0;
-  writeReg(ICM42688_REG_BANK_SEL,&bank,1);
-	readReg(ICM42688_WHO_AM_I,&id,1);
-  if( id == 0){
+  writeReg(ICM42688_REG_BANK_SEL,&bank,1);//REG_BANK_SEL寄存器写0，选择BANK0
+	readReg(ICM42688_WHO_AM_I,&id,1);       //读取WHO_AM_I寄存器，获取ICM42688的ID
+  if( id == 0){ //如果ID为0，说明发生数据总线错误，返回ERR_DATA_BUS异常
 
     return ERR_DATA_BUS;
   }
 
-  if(id != ICM42688_ID){
+  if(id != ICM42688_ID){  //如果ID不为ICM42688_ID，说明芯片型号不匹配，返回ERR_IC_VERSION异常
     return ERR_IC_VERSION;
   }
   uint8_t reset = 0;
   writeReg(ICM42688_DEVICE_CONFIG,&reset,1);
+  //SPI_MODE写0: 支持Mode0或Mode3
+  //SOFT_RESET_CONFIG写0: 使用默认软件重置配置
+  //向该位字段写入1后，在尝试任何其他寄存器访问之前，等待1ms软重置生效
   LL_mDelay(2);
 	_accelX = 0; _accelY = 0; _accelZ = 0;
 	_gyroX = 0; _gyroY = 0; _gyroZ = 0;
+  //将全局变量初始化为0，用于FIFO中断接收
 	LL_mDelay(2);
   return ERR_OK;
 }
-
+/*********************读取寄存器来获取各项数据*************************/
 float getTemperature(void)
 {
   float value;
-  if(FIFOMode){
-    value = (_temp/2.07) + 25;
+  if(FIFOMode){//如果是FIFO模式，_temp将会在FIFO中断中更新成最新的温度值
+    value = (_temp/2.07) + 25;//温度计算公式
   } else{
     uint8_t data[2];
     int16_t value2;
     readReg(ICM42688_TEMP_DATA1, data, 2);
     value2 = ((uint16_t )data[0]<<8) | (uint16_t )data[1];
-    value = value2/132.48 + 25;
+    value = value2/132.48 + 25;//读取寄存器ICM42688_TEMP_DATA1中的数据
   }
   return value;
 }
@@ -219,47 +225,46 @@ void tapDetectionInit(uint8_t accelMode)
 {
   uint8_t bank = 0;
 	uint8_t _command = 0;
-  writeReg(ICM42688_REG_BANK_SEL,&bank,1);
+  writeReg(ICM42688_REG_BANK_SEL,&bank,1);//向blank寄存器写0，选择BANK0
   if(accelMode == 0){
-		
-    accelConfig0.accelODR = 15;
+    accelConfig0.accelODR = 15;//UI接口输出的加速度计ODR选择1111: 500Hz (LP or LN mode)
 		_command = (accelConfig0.accelFsSel << 5) | (accelConfig0.reserved << 4) | accelConfig0.accelODR;
-    writeReg(ICM42688_ACCEL_CONFIG0,&_command,1);
+    writeReg(ICM42688_ACCEL_CONFIG0,&_command,1);//写入加速度计配置寄存器ICM42688_ACCEL_CONFIG0
 		
-    PWRMgmt0.accelMode = 2;
+    PWRMgmt0.accelMode = 2;//(LP) Mode//加速度计低功耗模式
 		_command = (PWRMgmt0.reserved << 6) | (PWRMgmt0.tempDis << 5) | (PWRMgmt0.idle << 4) | (PWRMgmt0.gyroMode << 2) |PWRMgmt0.accelMode;
-    writeReg(ICM42688_PWR_MGMT0,&_command,1);
+    writeReg(ICM42688_PWR_MGMT0,&_command,1);//写入电源管理寄存器ICM42688_PWR_MGMT0
     LL_mDelay(1);
 			
-    INTFConfig1.accelLpClkSel = 0;
+    INTFConfig1.accelLpClkSel = 0;//加速度计LP模式使用唤醒振荡器时钟
 		_command = (INTFConfig1.reserved << 4) | (INTFConfig1.accelLpClkSel << 3) | ( INTFConfig1.rtcMode << 2) | INTFConfig1.clksel;
-    writeReg(ICM42688_INTF_CONFIG1,&_command,1);
+    writeReg(ICM42688_INTF_CONFIG1,&_command,1);//写入接口配置寄存器ICM42688_INTF_CONFIG1
 		
-    accelConfig1.accelUIFiltORD = 2;
+    accelConfig1.accelUIFiltORD = 2;//选择ACCEL UI滤波器的阶数：3阶
 		_command = (accelConfig1.reserved2 << 5) | (accelConfig1.accelUIFiltORD << 3) | ( accelConfig1.accelDec2M2ORD << 1) | accelConfig1.reserved;
-    writeReg(ICM42688_ACCEL_CONFIG1,&_command,1);
+    writeReg(ICM42688_ACCEL_CONFIG1,&_command,1);//写入加速度计配置寄存器ICM42688_ACCEL_CONFIG1
 		
-    gyroAccelConfig0.accelUIFiltBW = 0;
+    gyroAccelConfig0.accelUIFiltBW = 0;//加速度计LPF的带宽设置为0 BW=ODR/2
 		_command = (gyroAccelConfig0.accelUIFiltBW << 4) | gyroAccelConfig0.gyroUIFiltBW;
     writeReg(ICM42688_GYRO_ACCEL_CONFIG0,&_command,1);
 		
   } else if(accelMode == 1){
 		
-    accelConfig0.accelODR = 6;
+    accelConfig0.accelODR = 6;// Accelerometer ODR selection for UI interface output//UI接口输出的加速度计ODR选择 0110: 1kHz (LN mode) (default)
 		_command = (accelConfig0.accelFsSel << 5) | (accelConfig0.reserved << 4) | accelConfig0.accelODR;
-    writeReg(ICM42688_ACCEL_CONFIG0,&_command,1);
+    writeReg(ICM42688_ACCEL_CONFIG0,&_command,1);//写入加速度计配置寄存器ICM42688_ACCEL_CONFIG0
 		
-    PWRMgmt0.accelMode = 3;
+    PWRMgmt0.accelMode = 3;//11: Places accelerometer in Low Noise (LN) Mode//加速度计低噪声模式
 		_command = (PWRMgmt0.reserved << 6) | (PWRMgmt0.tempDis << 5) | (PWRMgmt0.idle << 4) | (PWRMgmt0.gyroMode << 2) |PWRMgmt0.accelMode;
-    writeReg(ICM42688_PWR_MGMT0,&_command,1);
+    writeReg(ICM42688_PWR_MGMT0,&_command,1);//写入电源管理寄存器ICM42688_PWR_MGMT0
 		
     LL_mDelay(1);
 		
-    accelConfig1.accelUIFiltORD = 2;
+    accelConfig1.accelUIFiltORD = 2;//选择ACCEL UI滤波器的阶数：3阶
 		_command = (accelConfig1.reserved2 << 5) | (accelConfig1.accelUIFiltORD << 3) | ( accelConfig1.accelDec2M2ORD << 1) | accelConfig1.reserved;
     writeReg(ICM42688_ACCEL_CONFIG1,&_command,1);
 		
-    gyroAccelConfig0.accelUIFiltBW = 0;
+    gyroAccelConfig0.accelUIFiltBW = 0;//加速度计LPF的带宽设置为0 BW=ODR/2
 		_command = (gyroAccelConfig0.accelUIFiltBW << 4) | gyroAccelConfig0.gyroUIFiltBW;
     writeReg(ICM42688_GYRO_ACCEL_CONFIG0,&_command,1);
   } else{
@@ -269,22 +274,22 @@ void tapDetectionInit(uint8_t accelMode)
 	
   LL_mDelay(1);
   bank = 4;
-  writeReg(ICM42688_REG_BANK_SEL,&bank,1);
-	
-  APEXConfig8.tapTmin = 3;
-  APEXConfig8.tapTavg = 3;
-  APEXConfig8.tapTmax = 2;
+  writeReg(ICM42688_REG_BANK_SEL,&bank,1);//选择BANK4
+	//配置APEX_CONFIG8寄存器
+  APEXConfig8.tapTmin = 3;    //Single tap window (number ofsamples)
+  APEXConfig8.tapTavg = 3;    //Tap energy measurement window (number of samples)
+  APEXConfig8.tapTmax = 2;    //Tap measurement window (number ofsamples)
 	_command = (APEXConfig8.reserved << 7) | (APEXConfig8.tapTmax << 5) |(APEXConfig8.tapTavg << 3) |APEXConfig8.tapTmin;
   writeReg(ICM42688_APEX_CONFIG8,&_command,1);
 	
-  APEXConfig7.tapMinJerkThr = 17;
+  APEXConfig7.tapMinJerkThr = 17;//
   APEXConfig7.tapMaxPeakTol = 1;
 
 	_command = (APEXConfig7.tapMinJerkThr << 2) | APEXConfig7.tapMaxPeakTol;
   writeReg(ICM42688_APEX_CONFIG7,&_command,1);
   LL_mDelay(1);
 	
-  INTSource.tapDetIntEn = 1;
+  INTSource.tapDetIntEn = 1;//使能敲击检测中断
 	_command = (INTSource.reserved << 6) | (INTSource.stepDetIntEn << 5)| (INTSource.stepCntOflIntEn << 4)| (INTSource.tiltDetIntEn << 3)|\
 	(INTSource.wakeDetIntEn << 2)|(INTSource.sleepDetIntEn << 1)|INTSource.tapDetIntEn;	
 	
@@ -296,10 +301,10 @@ void tapDetectionInit(uint8_t accelMode)
 	
   LL_mDelay(50);
   bank = 0;
-  writeReg(ICM42688_REG_BANK_SEL,&bank,1);
+  writeReg(ICM42688_REG_BANK_SEL,&bank,1);//回选到BANK0
 	
-  APEXConfig0.tapEnable = 1;
-	_command = (APEXConfig0.DMPPowerSave << 7) | (APEXConfig0.tapEnable << 6)|(APEXConfig0.PEDEnable << 5)|\
+  APEXConfig0.tapEnable = 1;//使能敲击检测
+	_command = (APEXConfig0.DMPPowerSave << 7) | (APEXConfig0.tapEnable << 6)|(APEXConfig0.PEDEnable << 5)|
 	(APEXConfig0.tiltEnable << 4)|(APEXConfig0.R2WEn << 3)|(APEXConfig0.reserved << 2)|APEXConfig0.dmpODR;
   writeReg(ICM42688_APEX_CONFIG0,&_command,1);
 }
@@ -324,7 +329,7 @@ void wakeOnMotionInit(void)
 {
   uint8_t bank = 0;
 	uint8_t _command = 0;
-  writeReg(ICM42688_REG_BANK_SEL,&bank,1);
+  writeReg(ICM42688_REG_BANK_SEL,&bank,1);//选择BANK0
 	
   accelConfig0.accelODR = 9;
 	_command = (accelConfig0.accelFsSel << 5) | (accelConfig0.reserved << 4) | accelConfig0.accelODR;
